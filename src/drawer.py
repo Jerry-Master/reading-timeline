@@ -15,7 +15,7 @@ def draw(path, prms, proc):
     for category in proc.categories:
         dwg = draw_category(dwg, category, prms, proc)
     for book in proc.books:
-        dwg = draw_book(dwg, book, prms)
+        dwg = draw_book(dwg, book, prms, proc)
     dwg.save(pretty=True)
 
 
@@ -174,69 +174,59 @@ def draw_score(dwg, x, y, book, prms):
         x += padding
 
 
-def draw_book(dwg, book, prms):
-    # Line
-    dwg.add(
-        dwg.line(
-            (prms.timeline_start_x, book.start_y),
-            (prms.timeline_end_x, book.finish_y),
-            stroke=book.color,
-            stroke_width=prms.book_line_width,
-        )
-    )
+def draw_book(dwg, book, prms, proc):
+    # Línea del libro
+    dwg.add(dwg.line((prms.timeline_start_x, book.start_y), (prms.timeline_end_x, book.finish_y), stroke=book.color, stroke_width=prms.book_line_width))
+    dwg.add(dwg.circle((prms.timeline_start_x, book.start_y), r=prms.book_tip_radius, fill=book.color))
+    dwg.add(dwg.circle((prms.timeline_end_x, book.finish_y), r=prms.book_tip_radius, fill=book.color))
 
-    # Circles
-    dwg.add(
-        dwg.circle(
-            (prms.timeline_start_x, book.start_y),
-            r=prms.book_tip_radius,
-            fill=book.color,
-        )
-    )
-    dwg.add(
-        dwg.circle(
-            (prms.timeline_end_x, book.finish_y),
-            r=prms.book_tip_radius,
-            fill=book.color,
-        )
-    )
-
-    # Title and subtitle
     dy = prms.book_title_font_size * prms.book_text_line_spacing
-    style = "italic" if book.link is not None else "normal"
-    text = dwg.text(
-        "",
-        insert=(prms.book_text_start_x, book.finish_y),
-        dominant_baseline="central",
-        font_family=prms.book_text_font,
-        fill=prms.book_text_color,
-        font_style=style,
-    )
-    text.add(
-        dwg.tspan(
-            book.title,
-            font_weight="bold",
-            font_size=str(prms.book_title_font_size) + "px",
-        )
-    )
-    text.add(
-        dwg.tspan(
-            book.subtitle,
-            x=[prms.book_text_start_x],
-            dy=[str(dy) + "px"],
-            font_size=str(prms.book_author_font_size) + "px",
-        )
-    )
+    style = 'italic' if book.link else 'normal'
+    text_x = prms.book_text_start_x
 
-    # Link
-    if book.link is not None:
+    # Inicializar contador estático global
+    if not hasattr(draw_book, 'max_shift_counter'):
+        draw_book.max_shift_counter = 0
+
+    if not hasattr(proc, 'books_drawn'):
+        proc.books_drawn = []
+
+    # Contador local para este libro
+    local_shift_counter = 0
+    min_distance = prms.book_title_font_size * 2
+    for other in proc.books_drawn:
+        if abs(book.finish_y - other['y']) < min_distance:
+            local_shift_counter += 1
+
+    margin_width = 60
+    if local_shift_counter > 0:
+        text_x += margin_width * local_shift_counter
+        dwg.add(dwg.line((prms.book_text_start_x, book.finish_y), (text_x, book.finish_y), stroke='black', stroke_width=0.2))
+
+    # Ajustar ancho del canvas si es necesario
+    if local_shift_counter > draw_book.max_shift_counter:
+        title_width_est = len(book.title) * prms.book_title_font_size
+        subtitle_width_est = len(book.subtitle) * prms.book_author_font_size + 70
+        extra_width = margin_width * (local_shift_counter - draw_book.max_shift_counter) + max(title_width_est, subtitle_width_est)
+        current_width = float(dwg['width'])
+        dwg['width'] = current_width + extra_width
+        dwg.attribs['viewBox'] = f"0 0 {float(dwg['width']) / prms.canvas_zoom} {proc.canvas_size_y}"
+        draw_book.max_shift_counter = max(draw_book.max_shift_counter, local_shift_counter)
+
+    text_obj = dwg.text('', insert=(text_x, book.finish_y), dominant_baseline='central', font_family=prms.book_text_font, fill=prms.book_text_color, font_style=style)
+    text_obj.add(dwg.tspan(book.title, font_weight='bold', font_size=str(prms.book_title_font_size)+'px'))
+    text_obj.add(dwg.tspan(book.subtitle, x=[text_x], dy=[str(dy)+'px'], font_size=str(prms.book_author_font_size)+'px'))
+
+    if book.link:
         link = dwg.add(dwg.a(book.link))
-        link.add(text)
+        link.add(text_obj)
     else:
-        dwg.add(text)
+        dwg.add(text_obj)
 
-    # Score
+    proc.books_drawn.append({'y': book.finish_y, 'x': text_x})
+
+    # Puntuación desplazada también
     if book.score is not None:
-        draw_score(dwg, book.score_x, book.finish_y + dy, book, prms)
+        draw_score(dwg, book.score_x + (text_x - prms.book_text_start_x), book.finish_y + dy, book, prms)
 
     return dwg
