@@ -7,142 +7,184 @@
 #to: 2022-12-31
 
 categories:
-  - id: fantasy
-    name: Fantasy
+  - id: ensayo
+    name: Ensayo
     color: '#ff5555'
 
-  - id: scifi
-    name: Sci-Fi
+  - id: narrativa
+    name: Narrativa
     color: '#2a7fff'
 
   - id: romance
     name: Romance
     color: '#ff1694'
 
-  - id: horror
-    name: Horror
+  - id: thriller
+    name: Suspense
     color: '#ffd801'
 
-  - id: history
-    name: Historical
+  - id: misc
+    name: Miscelánea
     color: '#50fa7b'
 
 books:
-  - title: Guns, Germs, and Steel
-    author: Jared Diamond
-    started: 2022-04-10
-    finished: 2022-05-13
-    score: 4
-    category: history
 
-  # A book with an undefined category
-  - title: Modern Operating Systems
-    author: Andrew S. Tanenbaum
-    started: 2022-04-23
-    finished: 2022-05-01
-    link: https://github.com/albertcanales/learning-notes/blob/main/books/modern-operating-systems.md
+  - title: Pues no se te nota
+    author: Bea Sánchez
+    started: 2025-02-17
+    finished: 2025-03-09
+    publication_year: 2025
+    score: 7
+    category: ensayo
+
+  - title: Vera, una historia de amor
+    author: Juan del Val
+    started: 2025-11-16
+    finished: 2025-11-19
+    publication_year: 2025
+    score: 7
+    category: romance
+
+  - title: El brillo de las luciérnagas
+    author: Paul Pen
+    started: 2025-10-02
+    finished: 2025-10-16
+    publication_year: 2013
+    score: 6
+    category: thriller
+
+  - title: La niña salvaje
+    author: Kristin Hannah
+    started: 2025-04-15
+    finished: 2025-05-05
+    publication_year: 2025
     score: 9
-    category: programming
+    category: thriller
 
-  - title: 1984
-    author: George Orwell
-    started: 2022-05-02
-    finished: 2022-05-07
-    category: scifi
-
-  - title: The Fault in Our Stars
-    author: John Green
-    started: 2022-06-25
-    finished: 2022-06-26
-    category: romance
-
-  - title: The Call of Cthulhu
-    author: H. P. Lovecraft
-    started: 2022-05-23
-    finished: 2022-06-12
-    score: 7
-    category: horror
-
-  - title: Caliban
-    author: Roger MacBride Allen
-    started: 2022-07-02
-    finished: 2022-07-06
-    score: 10
-    category: scifi
-
-  - title: Mistborn
-    author: Brandon Sanderson
-    started: 2022-07-07
-    finished: 2022-07-13
-    link: https://www.brandonsanderson.com/
-    category: fantasy
-
-  - title: Fahrenheit 451
-    author: Ray Bradbury
-    started: 2022-07-17
-    finished: 2022-07-19
-    category: scifi
-
-  - title: Dracula
-    author: Bram Stoker
-    started: 2022-07-20
-    finished: 2022-07-26
-    score: 5
-    category: horror
-
-  - title: Wuthering Heights
-    author: Emily Brontë
-    started: 2022-07-29
-    finished: 2022-08-01
-    score: 7
-    category: romance
-
-  - title: Frankenstein
-    author: Mary Shelley
-    started: 2022-07-23
-    finished: 2022-08-07
-    category: horror
-
-  - title: The History of the Ancient World
-    author: Susan Wise Bauer
-    started: 2022-08-03
-    finished: 2022-08-16
-    score: 3
-    category: history
-
-  # In case of tip collision, the last to appear is drawn on top
-  - title: The Fellowship of the Ring
-    author: J. R. R. Tolkien
-    started: 2022-08-04
-    finished: 2022-09-03
-    link: https://www.youtube.com/@NerdoftheRings
-    publication_year: 1954
-    score: 10
-    category: fantasy
-
-  - title: The Shining
-    author: Stephen King
-    started: 2022-08-20
-    finished: 2022-08-22
-    link: https://www.imdb.com/title/tt0081505/
-    category: horror
-
-  - title: Pride and Prejudice
-    author: Jane Austen
-    started: 2022-08-23
-    finished: 2022-08-28
-    category: romance
-
-  # A book with no category nor score
-  - title: J.R.R. Tolkien. A Biography
-    author: Humphrey Carpenter
-    started: 2022-09-07
-    finished: 2022-09-10
-
-  - title: The Hitchhiker's Guide to the Galaxy
-    author: Douglas Adams
-    started: 2022-09-12
-    finished: 2022-09-16
-    publication_year: 1979
+  - title: Love, theoretically
+    author: Ali Hazelwood
+    started: 2025-05-17
+    finished: 2025-06-10
+    publication_year: 2023
     score: 8
-    category: scifi
+    category: romance
+
+  - title: La chica de Woodstock
+    author: Elena Castillo
+    started: 2025-06-12
+    finished: 2025-07-08
+    publication_year: 2025
+    score: 9
+    category: fantasy
+
+  - title: Mi concepción del mundo
+    author: Erwin Schrödinger
+    started: 2025-09-24
+    finished: 2025-10-01
+    publication_year: 1962
+    score: 5
+    category: ensayo
+
+  - title: Mente y materia
+    author: Erwin Schrödinger
+    started: 2025-05-05
+    finished: 2025-06-12
+    publication_year: 1956
+    score: 7
+    category: ensayo
+
+  - title: ¿Qué es la vida?
+    author: Erwin Schrödinger
+    started: 2025-03-19
+    finished: 2025-03-21
+    publication_year: 1944
+    score: 9
+    category: ensayo
+
+  - title: Crisálida
+    author: Fernando Navarro
+    started: 2025-09-04
+    finished: 2025-09-18
+    publication_year: 2025
+    score: 9
+    category: thriller
+
+  - title: The blind spot
+    author: Adam Frank
+    started: 2024-10-04
+    finished: 2025-09-23
+    publication_year: 2024
+    score: 5
+    category: ensayo
+
+  - title: La importancia de tu nombre
+    author: Clara Peñalver
+    started: 2025-02-28
+    finished: 2025-03-12
+    publication_year: 2022
+    score: 9
+    category: thriller
+
+  - title: La luz de Granada
+    author: Fex Maldonado
+    started: 2025-05-22
+    finished: 2025-06-07
+    publication_year: 2023
+    score: 9
+    category: narrativa
+
+  - title: El libro de los 5 anillos
+    author: Myamoto Musashi
+    started: 2025-08-05
+    finished: 2025-08-06
+    publication_year: 1645
+    score: 6
+    category: misc
+
+  - title: The denial of death
+    author: Ernest Becker
+    started: 2025-07-28
+    finished: 2025-08-09
+    publication_year: 1973
+    score: 5
+    category: ensayo
+
+  - title: The summer that melted everything
+    author: Tiffany McDaniel
+    started: 2025-03-26
+    finished: 2025-04-08
+    publication_year: 2016
+    score: 8
+    category: narrativa
+
+  - title: The humans
+    author: Matt Haig
+    started: 2025-03-13
+    finished: 2025-04-02
+    publication_year: 2013
+    score: 10
+    category: narrativa
+
+  - title: La última sultana
+    author: Andrea D. Morales
+    started: 2025-08-09
+    finished: 2025-09-02
+    publication_year: 2022
+    score: 8
+    category: narrativa
+
+  - title: Never split the difference
+    author: Chris Voss
+    started: 2025-11-04
+    finished: 2025-11-11
+    publication_year: 2016
+    score: 10
+    category: ensayo
+
+  - title: Siddhartha
+    author: Hermann Hesse
+    started: 2025-03-07
+    finished: 2025-03-08
+    publication_year: 1922
+    score: 8
+    category: misc
